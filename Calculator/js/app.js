@@ -1,5 +1,5 @@
 //variables
-//to display num and ops that user clicked on and result
+//to display num and operators that user clicked on and result
 let displayResult = document.querySelector(".result");
 //to display live result
 let displayLiveResult = document.querySelector(".live-result");
@@ -13,20 +13,20 @@ document.querySelectorAll(".btn").forEach((element) => {
 });
 
 //functions
-// this function first check users clicked btn kind of
-// class mustShow is for btns that should be display and only numbers and . and ops contain mustShow
+// this function first check users clicked button kind
+// class mustShow is for buttons that should be displayed and only numbers and . and operators contain mustShow
 
 function checkEntered(e) {
   //to check that if the tags class list contain mustShow class
   if (e.target.classList.contains("mustShow")) {
-    //to check btns with mustShow class we use display function
+    //to check button with mustShow class we use display function
     display(e.target);
-    //to check that if the btn contain equal class
+    //to check that if the button contain equal class
   } else if (
     e.target.classList.contains("equal") &&
     displayResult.textContent != "Error"
   ) {
-    /* if user clicks on equal btn, the result will be replace in users entered num and ops
+    /* if user clicks on equal button, the result will be replaced in users entered num and ops
         and user can use that result for next calculation */
     showResult(displayResult.textContent);
     //to check that if the btn contain backspace class
@@ -36,34 +36,34 @@ function checkEntered(e) {
   ) {
     /* we have two btn that their classlist contain backspace
         one for remove just one char, and one for remove all the string in result section */
-    // to check if the btn text content is C
+    // to check if the button text content is C
     if (e.target.textContent == "C") {
       //remove all string in result section and live result section
       displayResult.textContent = "";
       displayLiveResult.textContent = "";
     } else {
-      //this condition is for an other backSpace btn that remove only one char from last of string
-      //if result sections text content is Error, all string in result and live result seec and check will be remove
+      //this condition is for an other backSpace button that removes only one char from last of string
+      //if result sections text content is Error, all string in result and live result section and check will be remove
       if (displayResult.textContent == "Error") {
         displayResult.textContent = "";
         displayLiveResult.textContent = "";
         check = "";
       } else {
-        //else only one char from last of string will be remove
+        //else only one char from last of string will be removed
         displayResult.textContent = displayResult.textContent.substr(
           0,
           displayResult.textContent.length - 1
         );
         check = check.substr(0, check.length - 1);
         /*to show live result we send results to show live result function after each click
-                on ops and numbers and backspace*/
+                on operators and numbers and backspace*/
         showLiveResult(displayResult.textContent);
       }
     }
   }
 }
 
-// a function to add clicked number or ops to result section
+// a function to add clicked number or operators to result section
 function display(target) {
   // check that if target contain operator class
   if (target.classList.contains("operator")) {
@@ -114,8 +114,8 @@ function display(target) {
               displayResult.textContent.length - 1
             ) + target.textContent;
           break;
-        /* if there isnt any operator in the last char, users entered operator will add
-                    and check will be empty*/
+        /* if there wasnt any operator in the last char, users entered operator will be added
+        and check will be empty*/
         default:
           displayResult.textContent =
             displayResult.textContent + target.textContent;
@@ -124,19 +124,19 @@ function display(target) {
       }
       //to show live result
       showLiveResult(displayResult.textContent);
-    } //if users entere btn is a number, it will add to the last of the result string
+    } //if users entered button was a number, it will be added to the last of the result string
   } else if (
     target.classList.contains("number") &&
     displayResult.textContent != "Error"
   ) {
     if (target.textContent == "+/-") {
-      //to let user use (- only once in numbers before a
+      //to let user use (- only once in numbers before an operator
       if (check.indexOf("(-") != -1) {
       } else {
         displayResult.textContent += "(-";
         check += "(-";
       }
-      //if users btn wasnt (- it the number will add to the result
+      //if users buttn wasnt (- , the number will be added to the result
     } else {
       displayResult.textContent += target.textContent;
       check += target.textContent;
@@ -178,7 +178,7 @@ function showResult(numbers) {
     displayResult.textContent = eval(numbers);
     displayLiveResult.textContent = "";
   } catch (error) {
-    //if the calculation had an error, "Error" will be replace with the entered numbers and operators
+    //if the calculation had an error, "Error" will be replaced with the entered numbers and operators
     displayResult.textContent = "Error";
   }
 }
