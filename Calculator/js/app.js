@@ -73,54 +73,13 @@ function display(target) {
       displayResult.textContent != "Error"
     ) {
       // check that if the last char of result screen is an operator
-      switch (displayResult.textContent[displayResult.textContent.length - 1]) {
-        //for example if the last char is + it will be replace with users clicked operator
-        case "×":
-          displayResult.textContent =
-            displayResult.textContent.substr(
-              0,
-              displayResult.textContent.length - 1
-            ) + target.textContent;
-          break;
-
-        case "÷":
-          displayResult.textContent =
-            displayResult.textContent.substr(
-              0,
-              displayResult.textContent.length - 1
-            ) + target.textContent;
-          break;
-
-        case "-":
-          displayResult.textContent =
-            displayResult.textContent.substr(
-              0,
-              displayResult.textContent.length - 1
-            ) + target.textContent;
-          break;
-
-        case "+":
-          displayResult.textContent =
-            displayResult.textContent.substr(
-              0,
-              displayResult.textContent.length - 1
-            ) + target.textContent;
-          break;
-
-        case "%":
-          displayResult.textContent =
-            displayResult.textContent.substr(
-              0,
-              displayResult.textContent.length - 1
-            ) + target.textContent;
-          break;
-        /* if there wasnt any operator in the last char, users entered operator will be added
-        and check will be empty*/
-        default:
-          displayResult.textContent =
-            displayResult.textContent + target.textContent;
-          check = "";
-          break;
+      if (/(×|÷|\+|-|%)$/.test(displayResult.textContent)) {
+        displayResult.textContent = displayResult.textContent.replace(
+          /(×|÷|\+|-|%)$/,
+          target.textContent
+        );
+      } else {
+        displayResult.textContent += target.textContent;
       }
       //to show live result
       showLiveResult(displayResult.textContent);
