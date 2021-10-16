@@ -29,14 +29,14 @@ function checkEntered(e) {
     /* if user clicks on equal button, the result will be replaced in users entered num and ops
         and user can use that result for next calculation */
     showResult(displayResult.textContent);
-    //to check that if the btn contain backspace class
+    //check that if the btn contain backspace class
   } else if (
     e.target.classList.contains("backspace") ||
     e.target.parentElement.classList.contains("backspace")
   ) {
     /* we have two btn that their classlist contain backspace
         one for remove just one char, and one for remove all the string in result section */
-    // to check if the button text content is C
+    // check if the button text content is C
     if (e.target.textContent == "C") {
       //remove all string in result section and live result section
       displayResult.textContent = "";
@@ -55,7 +55,7 @@ function checkEntered(e) {
           displayResult.textContent.length - 1
         );
         check = check.substr(0, check.length - 1);
-        /*to show live result we send results to show live result function after each click
+        /*show live result we send results to show live result function after each click
                 on operators and numbers and backspace*/
         showLiveResult(displayResult.textContent);
       }
@@ -81,7 +81,7 @@ function display(target) {
       } else {
         displayResult.textContent += target.textContent;
       }
-      //to show live result
+      //show live result
       showLiveResult(displayResult.textContent);
     } //if users entered button was a number, it will be added to the last of the result string
   } else if (
@@ -89,13 +89,13 @@ function display(target) {
     displayResult.textContent != "Error"
   ) {
     if (target.textContent == "+/-") {
-      //to let user use (- only once in numbers before an operator
+      //let user use (- only once in numbers before an operator
       if (check.indexOf("(-") != -1) {
       } else {
         displayResult.textContent += "(-";
         check += "(-";
       }
-      //if users buttn wasnt (- , the number will be added to the result
+      //if users button wasnt (- , the number will be added to the result
     } else {
       displayResult.textContent += target.textContent;
       check += target.textContent;
@@ -115,15 +115,15 @@ function display(target) {
 
 //this function is for displaying live result
 function showLiveResult(numbers) {
-  //to catch error if it couldnt be calculate
+  //catch error if it couldnt be calculate
   try {
-    //to replace × and ÷ and (- with *, / and - so it can be calculate with eval function
+    //replace × and ÷ and (- with *, / and - so it can be calculate with eval function
     numbers = numbers.replace(/\×/g, "*");
     numbers = numbers.replace(/\÷/g, "/");
     numbers = numbers.replace(/\(-/g, "-");
     displayLiveResult.textContent = eval(numbers);
   } catch (error) {
-    //the error for live result section is an empty string
+    //error for live result section is an empty string
     displayLiveResult.textContent = "";
   }
 }
